@@ -6,7 +6,48 @@ using System.Threading.Tasks;
 
 namespace ShoppingCartApplication
 {
-    internal class ClothingStore
+    public class ClothingStore
     {
+        private List<Product> products;
+        private ShoppingCart cart;
+
+        public ClothingStore(ShoppingCart shoppingCart)
+        {
+            cart = shoppingCart;
+            var generator = new ProductGenerator();
+            products = new List<Product>();
+            for (int i = 0; i < 10; i++)
+            {
+                var product = generator.GenerateProduct();
+                if (product.Category == ProductCategory.Clothing)
+                {
+                    products.Add(product);
+                }
+            }
+        }
+
+        public void DisplayProducts()
+        {
+            Console.WriteLine("Clothing Store Products:");
+            foreach (var product in products)
+            {
+                Console.WriteLine(product);
+            }
+        }
+
+        public void AddToCart(string productName)
+        {
+            var product = products.Find(p => p.Name == productName);
+            if (product != null)
+            {
+                cart.AddItem(product);
+                Console.WriteLine($"{productName} added to the cart.");
+            }
+            else
+            {
+                Console.WriteLine("Product not found.");
+            }
+        }
     }
+
 }
