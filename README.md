@@ -26,4 +26,4 @@ This is a console-based smart shopping cart application where users can add and 
 
 ## Unit Tests
 To run the unit tests, navigate to the `ShoppingCartApplicationTests` directory and run `
-/
+
